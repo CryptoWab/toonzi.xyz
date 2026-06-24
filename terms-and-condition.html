@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Condition - TOONZI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET & BASICS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            padding-bottom: 100px; 
+        }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(90deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .menu-icon { font-size: 24px; cursor: pointer; transition: 0.3s; width: 30px; }
+        .menu-icon:hover { color: #ffcc00; }
+        .site-title {
+            font-family: 'Impact', sans-serif;
+            font-size: 26px;
+            letter-spacing: 2px;
+            color: #fff;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .site-title span { color: #ffcc00; }
+        .search-icon { font-size: 20px; cursor: pointer; transition: 0.3s; width: 30px; text-align: right; }
+        .search-icon:hover { color: #ffcc00; }
+
+        /* --- SEARCH BAR (SLIDE DOWN) --- */
+        .search-slide {
+            position: sticky;
+            top: 70px; /* Header ke neeche */
+            width: 100%;
+            background: #fff;
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            z-index: 998;
+            display: none; /* Default hidden */
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .search-slide.active {
+            display: flex;
+        }
+        .search-slide input {
+            flex: 1;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+        .search-slide input:focus {
+            border-color: #302b63;
+        }
+        .search-slide .close-search-btn {
+            font-size: 24px;
+            color: #555;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: 0.3s;
+        }
+        .search-slide .close-search-btn:hover { color: #ff0000; }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            position: fixed; top: 0; left: -280px; width: 280px; height: 100%;
+            background: #1a1a2e; color: #fff; transition: 0.4s ease-in-out;
+            padding-top: 60px; z-index: 2000; box-shadow: 2px 0 10px rgba(0,0,0,0.5); overflow-y: auto;
+        }
+        .sidebar.active { left: 0; }
+        .sidebar a {
+            padding: 15px 25px; text-decoration: none; font-size: 16px; color: #ccc;
+            display: block; transition: 0.3s; border-left: 4px solid transparent;
+        }
+        .sidebar a:hover { color: #fff; background-color: #252547; border-left: 4px solid #ffcc00; }
+        .sidebar .close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #ffcc00; }
+
+        /* --- TERMS CONTENT STYLES --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .terms-box {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .terms-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #0f0c29;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .terms-subtitle {
+            font-size: 22px;
+            color: #302b63;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #ffcc00;
+            padding-bottom: 15px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .terms-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .terms-content strong {
+            color: #0f0c29;
+        }
+
+        .terms-content ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        .terms-content ul li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        /* --- FOOTER --- */
+        footer { position: fixed; bottom: 0; left: 0; width: 100%; background: #0f0c29; color: #ccc; text-align: center; padding: 15px 10px; border-top: 3px solid #ffcc00; z-index: 999; font-size: 13px; line-height: 1.6; }
+        footer a { color: #ffcc00; font-weight: bold; }
+        .footer-social { margin-top: 8px; display: flex; justify-content: center; gap: 20px; }
+        .footer-social a { color: #ccc; font-size: 20px; transition: 0.3s; }
+        .footer-social a:hover { color: #ffcc00; transform: scale(1.1); }
+
+        /* --- THEME TOGGLE --- */
+        .theme-toggle { position: fixed; bottom: 90px; right: 20px; background: #302b63; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; z-index: 1000; transition: 0.3s; }
+        .theme-toggle:hover { transform: scale(1.1); background: #ffcc00; color: #333; }
+
+        /* --- DARK MODE --- */
+        body.dark-mode { background-color: #121212; color: #e0e0e0; }
+        body.dark-mode header { background: #1e1e1e; }
+        body.dark-mode .sidebar { background: #1e1e1e; }
+        body.dark-mode .terms-box { background: #1e1e1e; border-color: #444; }
+        body.dark-mode .terms-title { color: #fff; }
+        body.dark-mode .terms-subtitle { color: #ffcc00; }
+        body.dark-mode .terms-content p { color: #ccc; }
+        body.dark-mode .terms-content strong { color: #fff; }
+        body.dark-mode .terms-content ul li { color: #ccc; }
+        body.dark-mode .theme-toggle { background: #333; color: #ffcc00; }
+        body.dark-mode footer { background: #1e1e1e; border-top: 3px solid #555; }
+        body.dark-mode .footer-social a { color: #aaa; }
+        body.dark-mode .search-slide { background: #1e1e1e; border-bottom: 1px solid #444; }
+        body.dark-mode .search-slide input { background: #2a2a2a; color: #fff; border-color: #444; }
+        body.dark-mode .search-slide .close-search-btn { color: #aaa; }
+        body.dark-mode .search-slide .close-search-btn:hover { color: #ff5555; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="menu-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+        <div class="site-title">TOON<span>ZI</span></div>
+        <div class="search-icon" onclick="toggleSearch()"><i class="fas fa-search"></i></div>
+    </header>
+
+    <!-- SLIDE SEARCH BAR -->
+    <div id="searchSlide" class="search-slide">
+        <input type="text" id="searchInput" placeholder="Type here to search..." onkeyup="handleSearch()">
+        <span class="close-search-btn" onclick="toggleSearch()">&times;</span>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div id="mySidebar" class="sidebar">
+        <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="anime.html"><i class="fas fa-tv"></i> Anime</a>
+        <a href="movies.html"><i class="fas fa-film"></i> Movies</a>
+        <a href="web-series.html"><i class="fas fa-video"></i> Web Series</a>
+        <div style="border-top: 1px solid #333; margin: 10px 20px;"></div>
+        <a href="terms-and-condition.html"><i class="fas fa-file-contract"></i> Terms and Condition</a>
+        <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+        <a href="dmca.html"><i class="fas fa-copyright"></i> DMCA</a>
+    </div>
+
+    <!-- TERMS AND CONDITION CONTENT -->
+    <main>
+        <div class="container">
+            <div class="terms-box">
+                <h1 class="terms-title">Terms and Condition</h1>
+                <h2 class="terms-subtitle">Toonzi Terms of Service</h2>
+
+                <div class="terms-content">
+                    <p><strong>1. Acceptance of Terms</strong><br>
+                    By accessing and using the Toonzi.xyz website, you accept and agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our website.</p>
+
+                    <p><strong>2. Use of Website</strong><br>
+                    Toonzi.xyz provides links to third-party content available on the internet. We do not host any files on our servers. The content provided is for informational and educational purposes only.</p>
+
+                    <p><strong>3. Intellectual Property Rights</strong><br>
+                    All content, logos, and designs on Toonzi.xyz are the property of Toonzi unless otherwise stated. You may not reproduce, distribute, or modify any part of the website without our prior written consent.</p>
+
+                    <p><strong>4. Third-Party Links</strong><br>
+                    Our website contains links to third-party websites. We do not control, endorse, or take responsibility for the content, privacy policies, or practices of these websites. Accessing these links is at your own risk.</p>
+
+                    <p><strong>5. Disclaimer of Warranties</strong><br>
+                    Toonzi.xyz is provided on an "as is" and "as available" basis. We make no representations or warranties of any kind regarding the accuracy, reliability, or availability of the website or the content provided.</p>
+
+                    <p><strong>6. Limitation of Liability</strong><br>
+                    Toonzi.xyz and its team shall not be held liable for any damages arising from the use of this website, including but not limited to direct, indirect, incidental, or consequential damages.</p>
+
+                    <p><strong>7. Changes to Terms</strong><br>
+                    We reserve the right to modify these Terms and Conditions at any time. Any changes will be posted on this page, and your continued use of the website constitutes acceptance of those changes.</p>
+
+                    <p><strong>8. Governing Law</strong><br>
+                    These Terms and Conditions shall be governed by and construed in accordance with the laws applicable in India.</p>
+
+                    <p><strong>9. Contact Us</strong><br>
+                    If you have any questions regarding these Terms and Conditions, you can contact us at:</p>
+                </div>
+
+                <div class="terms-contact" style="background: #f0f0f5; padding: 20px; border-radius: 10px; text-align: center; margin-top: 25px; border-left: 5px solid #ffcc00;">
+                    <p><strong>Email:</strong> <a href="mailto:vr3725794@gmail.com" style="color: #302b63; font-weight: bold; text-decoration: none;">vr3725794@gmail.com</a></p>
+                    <p style="margin-top: 5px; font-size: 14px; color: #777;">Please allow 3-5 business days for an email response.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © 2012-2025. All Rights Reserved by <a href="https://toonzi.xyz">TOONZI</a>.</p>
+        <div class="footer-social">
+            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/toonzi.xyz?igsh=MXdieXVwZmFzNm04cQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <div class="theme-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+        // --- SEARCH FUNCTION (Kyunki is page par grid nahi hai, search sirf alert dikhayega) ---
+        let allData = [];
+
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                if (response.ok) {
+                    allData = await response.json();
+                }
+            } catch (error) {
+                // Data load nahi hua toh koi baat nahi, search alert karega
+            }
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (query !== "") {
+                // Agar data load hai toh data mein search karein
+                if (allData.length > 0) {
+                    const found = allData.filter(item => 
+                        item.searchTag.toLowerCase().includes(query) || 
+                        item.title.toLowerCase().includes(query)
+                    );
+                    if(found.length > 0) {
+                        alert("Found " + found.length + " results for: " + query + "\n(Note: Terms page par grid nahi hai, isliye alert aa raha hai)");
+                    } else {
+                        alert("No results found for: " + query);
+                    }
+                } else {
+                    alert("Searching for: " + query + "\n(Data file not loaded, but you can search normally on Anime/Movies pages)");
+                }
+            }
+        }
+
+        // --- TOGGLE FUNCTIONS ---
+        function toggleSidebar() { document.getElementById("mySidebar").classList.toggle("active"); }
+
+        function toggleSearch() {
+            const slide = document.getElementById("searchSlide");
+            slide.classList.toggle("active");
+            if (slide.classList.contains("active")) {
+                document.getElementById("searchInput").focus();
+            } else {
+                document.getElementById("searchInput").value = ""; 
+            }
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            const icon = document.querySelector(".theme-toggle i");
+            if (document.body.classList.contains("dark-mode")) {
+                icon.classList.remove("fa-moon"); icon.classList.add("fa-sun");
+            } else {
+                icon.classList.remove("fa-sun"); icon.classList.add("fa-moon");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+        });
+    </script>
+</body>
+</html>
