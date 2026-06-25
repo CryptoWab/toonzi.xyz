@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demon Slayer Season 1 - Download | TOONZI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET & BASICS --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f8f9fa; color: #333; transition: background-color 0.3s, color 0.3s; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- HEADER --- */
+        header { background: linear-gradient(90deg, #0f0c29, #302b63, #24243e); color: #fff; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 999; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .menu-icon { font-size: 24px; cursor: pointer; transition: 0.3s; width: 30px; }
+        .menu-icon:hover { color: #ffcc00; }
+        .site-title { font-family: 'Impact', sans-serif; font-size: 26px; letter-spacing: 2px; color: #fff; position: absolute; left: 50%; transform: translateX(-50%); }
+        .site-title span { color: #ffcc00; }
+        .search-icon { font-size: 20px; cursor: pointer; transition: 0.3s; width: 30px; text-align: right; }
+        .search-icon:hover { color: #ffcc00; }
+
+        /* --- SIDEBAR --- */
+        .sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100%; background: #1a1a2e; color: #fff; transition: 0.4s ease-in-out; padding-top: 60px; z-index: 2000; box-shadow: 2px 0 10px rgba(0,0,0,0.5); overflow-y: auto; }
+        .sidebar.active { left: 0; }
+        .sidebar a { padding: 15px 25px; text-decoration: none; font-size: 16px; color: #ccc; display: block; transition: 0.3s; border-left: 4px solid transparent; }
+        .sidebar a:hover { color: #fff; background-color: #252547; border-left: 4px solid #ffcc00; }
+        .sidebar .close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #ffcc00; }
+
+        /* --- POST CONTENT STYLES --- */
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .post-card { background: #fff; border-radius: 15px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #e0e0e0; }
+
+        .post-header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .post-poster { width: 200px; height: 280px; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        .post-title-info h1 { font-size: 24px; font-weight: 700; color: #0f0c29; margin-bottom: 10px; line-height: 1.4; }
+        .post-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px; color: #555; text-align: left; margin-top: 10px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .post-meta span { display: block; }
+        .post-meta strong { color: #0f0c29; }
+
+        .synopsis { margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ffcc00; }
+        .synopsis p { font-size: 15px; color: #444; line-height: 1.6; }
+        .audio-info { margin: 20px 0; padding: 15px; background: #eef2ff; border-radius: 8px; }
+        .audio-info h3 { font-size: 16px; color: #0f0c29; margin-bottom: 5px; }
+        .audio-info p { font-size: 14px; color: #555; line-height: 1.6; }
+
+        /* --- EPISODE LIST --- */
+        .episode-section { margin-top: 30px; }
+        .episode-section h2 { font-size: 22px; color: #0f0c29; border-bottom: 2px solid #ffcc00; padding-bottom: 10px; margin-bottom: 15px; }
+        .episode-item { border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px; overflow: hidden; transition: 0.3s; }
+        .episode-header { background: #f8f9fa; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.3s; font-weight: 500; color: #333; }
+        .episode-header:hover { background: #eef2ff; }
+        .episode-header .toggle-icon { font-size: 20px; font-weight: bold; color: #302b63; transition: 0.3s; }
+        .episode-download { display: none; padding: 15px; background: #fff; text-align: center; border-top: 1px solid #eee; }
+        .episode-download.active { display: block; }
+        .episode-download .btn-download { display: inline-block; background: #ffcc00; color: #0f0c29; padding: 10px 30px; border-radius: 30px; font-weight: bold; text-decoration: none; transition: 0.3s; box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3); }
+        .episode-download .btn-download:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(255, 204, 0, 0.4); }
+
+        /* --- COMPLETE PACK SECTION --- */
+        .pack-section { margin-top: 30px; }
+        .pack-header { background: #f8f9fa; padding: 12px 15px; border: 1px solid #e0e0e0; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.3s; font-weight: 500; color: #333; }
+        .pack-header:hover { background: #eef2ff; }
+        .pack-header .toggle-icon { font-size: 20px; font-weight: bold; color: #302b63; transition: 0.3s; }
+        .pack-content { display: none; padding: 20px; border: 1px solid #e0e0e0; border-top: none; border-radius: 0 0 8px 8px; background: #fff; }
+        .pack-content.active { display: block; }
+        .pack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+        .pack-btn { background: #0f0c29; color: #fff; padding: 12px; border-radius: 8px; font-weight: bold; text-align: center; transition: 0.3s; display: block; }
+        .pack-btn:hover { background: #302b63; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        /* --- SUGGESTIONS --- */
+        .suggestions-section { margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; }
+        .suggestions-section h2 { font-size: 22px; color: #0f0c29; margin-bottom: 15px; }
+        .suggestions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+        .suggestion-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eee; transition: 0.3s; cursor: pointer; }
+        .suggestion-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .suggestion-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .suggestion-card h4 { font-size: 14px; font-weight: 600; color: #333; padding: 10px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .no-suggestions-msg { grid-column: 1 / -1; text-align: center; padding: 30px; color: #666; font-size: 16px; background: #f8f9fa; border-radius: 10px; border: 1px dashed #ccc; }
+
+        /* --- FOOTER --- */
+        footer { background: #0f0c29; color: #ccc; text-align: center; padding: 20px 10px; border-top: 3px solid #ffcc00; margin-top: 40px; font-size: 13px; line-height: 1.6; }
+        footer a { color: #ffcc00; font-weight: bold; }
+        .footer-social { margin-top: 8px; display: flex; justify-content: center; gap: 20px; }
+        .footer-social a { color: #ccc; font-size: 20px; transition: 0.3s; }
+        .footer-social a:hover { color: #ffcc00; transform: scale(1.1); }
+
+        /* --- THEME TOGGLE --- */
+        .theme-toggle { position: fixed; bottom: 90px; right: 20px; background: #302b63; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); cursor: pointer; z-index: 1000; transition: 0.3s; }
+        .theme-toggle:hover { transform: scale(1.1); background: #ffcc00; color: #333; }
+
+        /* --- DARK MODE --- */
+        body.dark-mode { background-color: #121212; color: #e0e0e0; }
+        body.dark-mode header { background: #1e1e1e; }
+        body.dark-mode .sidebar { background: #1e1e1e; }
+        body.dark-mode .post-card { background: #1e1e1e; border-color: #444; }
+        body.dark-mode .post-title-info h1 { color: #fff; }
+        body.dark-mode .post-meta strong { color: #fff; }
+        body.dark-mode .synopsis { background: #2a2a2a; }
+        body.dark-mode .synopsis p { color: #ccc; }
+        body.dark-mode .audio-info { background: #2a2a2a; }
+        body.dark-mode .audio-info p { color: #ccc; }
+        body.dark-mode .episode-header { background: #2a2a2a; color: #ccc; border-color: #444; }
+        body.dark-mode .episode-header:hover { background: #333; }
+        body.dark-mode .episode-header .toggle-icon { color: #ffcc00; }
+        body.dark-mode .episode-download { background: #1e1e1e; border-color: #444; }
+        body.dark-mode .pack-header { background: #2a2a2a; color: #ccc; border-color: #444; }
+        body.dark-mode .pack-header:hover { background: #333; }
+        body.dark-mode .pack-header .toggle-icon { color: #ffcc00; }
+        body.dark-mode .pack-content { background: #1e1e1e; border-color: #444; }
+        body.dark-mode .pack-btn { background: #2a2a2a; border: 1px solid #444; }
+        body.dark-mode .pack-btn:hover { background: #333; }
+        body.dark-mode .theme-toggle { background: #333; color: #ffcc00; }
+        body.dark-mode footer { background: #1e1e1e; border-top: 3px solid #555; }
+        body.dark-mode .footer-social a { color: #aaa; }
+        body.dark-mode .suggestion-card { background: #1e1e1e; border-color: #444; }
+        body.dark-mode .suggestion-card h4 { color: #fff; }
+        body.dark-mode .no-suggestions-msg { background: #1e1e1e; border-color: #444; color: #aaa; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="menu-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+        <div class="site-title">TOON<span>ZI</span></div>
+        <!-- CLICK KARNE PAR SEARCH.HTML PAR REDIRECT HOGA -->
+        <div class="search-icon" onclick="window.location.href='search.html'"><i class="fas fa-search"></i></div>
+    </header>
+
+    <div id="mySidebar" class="sidebar">
+        <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="anime.html"><i class="fas fa-tv"></i> Anime</a>
+        <a href="movies.html"><i class="fas fa-film"></i> Movies</a>
+        <a href="web-series.html"><i class="fas fa-video"></i> Web Series</a>
+        <div style="border-top: 1px solid #333; margin: 10px 20px;"></div>
+        <a href="terms-and-condition.html"><i class="fas fa-file-contract"></i> Terms and Condition</a>
+        <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+        <a href="dmca.html"><i class="fas fa-copyright"></i> DMCA</a>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="post-card">
+                
+                <!-- POST HEADER -->
+                <div class="post-header">
+                    <img src="https://cdn.phototourl.com/free/2026-06-25-24ba2203-1a9a-4fe4-bbb1-7b0cb92b42c4.jpg" alt="Demon Slayer Poster" class="post-poster">
+                    <div class="post-title-info">
+                        <h1>Demon Slayer (Kimetsu no Yaiba) Season 1 Multi Audio [Hindi-English-Jap] 480p, 720p & 1080p HD BluRay | 10bit HEVC ESub</h1>
+                        <p style="color: #666; margin-bottom: 10px; font-size: 14px;">||Original WEB Hindi 192kbps AAC 2.0 Jio/Muse India Dub||</p>
+                        <div class="post-meta">
+                            <span><strong>Genre:</strong> Animation | Action | Adventure</span>
+                            <span><strong>Org. run:</strong> TV Series (2019–)</span>
+                            <span><strong>Running time:</strong> 25min</span>
+                            <span><strong>Language:</strong> Japanese – English – Hindi 2.0</span>
+                            <span><strong>Episodes:</strong> 26</span>
+                            <span><strong>Quality:</strong> 1080p FHD | 720p HD | 480p BluRay</span>
+                            <span style="grid-column: 1 / -1;"><strong>Encoder:</strong> TOONZI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="synopsis">
+                    <p><strong>Synopsis:</strong> A family is attacked by demons and only two members survive – Tanjiro and his sister Nezuko, who is turning into a demon slowly. Tanjiro sets out to become a demon slayer to avenge his family and cure his sister.</p>
+                </div>
+
+                <div class="audio-info">
+                    <h3>Audio Track Info For 1080p HEVC [HQ]:-</h3>
+                    <p>Track 1:- Hindi AAC 2.0 Stereo 192kbps<br>
+                    Track 2:- English AC3 2.0 Stereo 384kbps<br>
+                    Track 3:- Japanese AC3 2.0 Stereo 384kbps</p>
+                </div>
+
+                <div class="episode-section">
+                    <h2>||Download Demon Slayer: Kimetsu no Yaiba Season 1 Episodes in Hindi Multi Audio|| SEASON 1</h2>
+                    
+                    <!-- Episodes List (Shortened for view, same as before) -->
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 01: Cruelty</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 02: Trainer Sakonji Urokodaki</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 03: Sabito and Makomo</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 04: Final Selection</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 05: My Own Steel</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 06: Swordsman Accompanying a Demon</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 07: Muzan Kibutsuji</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 08: The Smell of Enchanting Blood</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 09: Temari Demon and Arrow Demon</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 10: Together Forever</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 11: Tsuzumi Mansion</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 12: The Boar Bares its Fangs, Zenitsu Sleeps</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 13: Something More Important Than Life</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 14: The House with the Wisteria Family Crest</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 15: Mount Natagumo</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 16: Letting Someone Else Go First</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 17: You Must Master a Single Thing</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 18: A Forged Bond</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 19: Hinokami</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 20: Pretend Family</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 21: Against Corps Rules</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 22: Master of the Mansion</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 23: Hashira Meeting</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 24: Rehabilitation Training</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 25: Tsuguko, Kanao Tsuyuri {NEW}</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                    <div class="episode-item"><div class="episode-header" onclick="toggleEpisode(this)"><span>Episode 26: New Mission {NEW}</span><span class="toggle-icon">+</span></div><div class="episode-download"><a href="#" class="btn-download" target="_blank">Download</a></div></div>
+                </div>
+
+                <!-- COMPLETE PACK -->
+                <div class="pack-section">
+                    <div class="pack-header" onclick="togglePack(this)">
+                        <span>||Complete Pack Single Zip File||</span>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="pack-content">
+                        <div class="pack-grid">
+                            <a href="#" class="pack-btn">480p SD Pack</a>
+                            <a href="#" class="pack-btn">720p HD Pack</a>
+                            <a href="#" class="pack-btn">720p HEVC Pack</a>
+                            <a href="#" class="pack-btn">1080p HEVC Pack</a>
+                            <a href="#" class="pack-btn">1080p HEVC HQ Pack</a>
+                        </div>
+                        <p style="margin-top: 15px; color: #666; font-size: 14px; text-align: center;"><strong>COMPLETE SEASON 1 ADDED</strong></p>
+                    </div>
+                </div>
+
+                <!-- SUGGESTIONS -->
+                <div class="suggestions-section" id="suggestionsSection">
+                    <h2>Suggestions</h2>
+                    <div class="suggestions-grid" id="suggestionsGrid">
+                        <div class="no-suggestions-msg">
+                            <i class="fas fa-search" style="font-size: 24px; color: #999; display: block; margin-bottom: 10px;"></i>
+                            No Suggestions Posts
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p style="margin-bottom: 5px;">
+            <a href="index.html">Home</a> | <a href="anime.html">Anime</a> | <a href="movies.html">Movies</a> | 
+            <a href="web-series.html">Web Series</a> | <a href="terms-and-condition.html">Terms</a> | 
+            <a href="privacy-policy.html">Privacy</a> | <a href="contact.html">Contact</a> | <a href="dmca.html">DMCA</a>
+        </p>
+        <p>Copyright © 2012-2025. All Rights Reserved by <a href="https://toonzi.xyz">TOONZI</a>.</p>
+        <div class="footer-social">
+            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/toonzi.xyz?igsh=MXdieXVwZmFzNm04cQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <div class="theme-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+        // --- EPISODE TOGGLE FUNCTION ---
+        function toggleEpisode(element) {
+            const icon = element.querySelector('.toggle-icon');
+            icon.innerText = (icon.innerText === '+') ? '-' : '+';
+            const downloadDiv = element.nextElementSibling;
+            downloadDiv.classList.toggle('active');
+        }
+
+        // --- COMPLETE PACK TOGGLE FUNCTION ---
+        function togglePack(element) {
+            const icon = element.querySelector('.toggle-icon');
+            icon.innerText = (icon.innerText === '+') ? '-' : '+';
+            const contentDiv = element.nextElementSibling;
+            contentDiv.classList.toggle('active');
+        }
+
+        function toggleSidebar() { document.getElementById("mySidebar").classList.toggle("active"); }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            const icon = document.querySelector(".theme-toggle i");
+            if (document.body.classList.contains("dark-mode")) { icon.classList.remove("fa-moon"); icon.classList.add("fa-sun"); } 
+            else { icon.classList.remove("fa-sun"); icon.classList.add("fa-moon"); }
+        }
+
+        // --- SUGGESTIONS LOADER ---
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('data.json')
+                .then(response => response.json())
+                .then(allData => {
+                    const animePosts = allData.filter(item => 
+                        item.categories && item.categories.includes('anime')
+                    );
+                    const currentPostTitle = "Demon Slayer Season 1";
+                    const suggestions = animePosts.filter(item => 
+                        !item.title.includes(currentPostTitle)
+                    );
+
+                    const gridContainer = document.getElementById('suggestionsGrid');
+                    gridContainer.innerHTML = ''; 
+
+                    if (suggestions.length === 0) {
+                        gridContainer.innerHTML = `
+                            <div class="no-suggestions-msg">
+                                <i class="fas fa-search" style="font-size: 24px; color: #999; display: block; margin-bottom: 10px;"></i>
+                                No Suggestions Posts
+                            </div>
+                        `;
+                    } else {
+                        suggestions.forEach(item => {
+                            const card = document.createElement('a');
+                            card.href = item.link;
+                            card.className = 'suggestion-card';
+                            card.style.textDecoration = 'none';
+                            
+                            card.innerHTML = `
+                                <img src="${item.poster}" alt="${item.title}" loading="lazy">
+                                <h4>${item.title}</h4>
+                            `;
+                            gridContainer.appendChild(card);
+                        });
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('suggestionsGrid').innerHTML = `
+                        <div class="no-suggestions-msg">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 24px; color: #999; display: block; margin-bottom: 10px;"></i>
+                            No Suggestions Posts
+                        </div>
+                    `;
+                });
+        });
+    </script>
+</body>
+</html>
