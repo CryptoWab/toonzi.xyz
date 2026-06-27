@@ -1,0 +1,34 @@
+[
+    {
+        "title": "Age Calculator",
+        "category": "Utility",
+        "icon": "fa-calculator",
+        "link": "age-calculator.html",
+        "hot": true,
+        "new": false
+    },
+    {
+        "title": "Legal Policy Generator",
+        "category": "Legal",
+        "icon": "fa-gavel",
+        "link": "legal-policy-generator.html",
+        "hot": true,
+        "new": false
+    },
+    {
+        "title": "Image Compressor",
+        "category": "Image",
+        "icon": "fa-compress-alt",
+        "link": "image-compressor.html",
+        "hot": true,
+        "new": true
+    },
+    {
+        "title": "Fancy Font Generator",
+        "category": "Text",
+        "icon": "fa-font",
+        "link": "fancy-font-generator.html",
+        "hot": false,
+        "new": true
+    }
+]
