@@ -75,6 +75,20 @@
     </url>
 
         <url>
+        <loc>https://toonzi.xyz/video-converter.html</loc>
+        <lastmod>2026-06-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+        <url>
+        <loc>https://toonzi.xyz/video-compressor.html</loc>
+        <lastmod>2026-06-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+        <url>
         <loc>https://toonzi.xyz/image-converter.html</loc>
         <lastmod>2026-06-28</lastmod>
         <changefreq>monthly</changefreq>
