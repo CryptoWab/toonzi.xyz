@@ -56,6 +56,14 @@
         "new": true
     },
     {
+        "title": "fafsa Converter",
+        "category": "education",
+        "icon": "fa-compress-alt",
+        "link": "fafsa-calculator.html",
+        "hot": false,
+        "new": true
+    },
+    {
         "title": "Fancy Font Generator",
         "category": "Text",
         "icon": "fa-font",
